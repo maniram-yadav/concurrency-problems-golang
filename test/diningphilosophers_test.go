@@ -1,6 +1,7 @@
-package diningphilosophers
+package test
 
 import (
+	dp "concurrency-patterns/dining-philosophers"
 	"fmt"
 	"sync"
 	"testing"
@@ -9,19 +10,19 @@ import (
 func TestDiningPhilosophers(t *testing.T) {
 
 	fmt.Println("Dining Philosphors")
-	var forks [PHILOSOPHER_COUNT]*sync.Mutex
+	var forks [dp.PHILOSOPHER_COUNT]*sync.Mutex
 
-	for i := 0; i < PHILOSOPHER_COUNT; i++ {
+	for i := 0; i < dp.PHILOSOPHER_COUNT; i++ {
 		forks[i] = &sync.Mutex{}
 	}
 	dineGroup := &sync.WaitGroup{}
-	dineGroup.Add(PHILOSOPHER_COUNT)
+	dineGroup.Add(dp.PHILOSOPHER_COUNT)
 
-	for i := 0; i < PHILOSOPHER_COUNT; i++ {
-		philosopher := &Philosopher{
+	for i := 0; i < dp.PHILOSOPHER_COUNT; i++ {
+		philosopher := &dp.Philosopher{
 			Id:        i + 1,
 			LeftFork:  forks[i],
-			RightFork: forks[(i+1)%PHILOSOPHER_COUNT],
+			RightFork: forks[(i+1)%dp.PHILOSOPHER_COUNT],
 			DineGroup: dineGroup,
 		}
 		go philosopher.Dine()
