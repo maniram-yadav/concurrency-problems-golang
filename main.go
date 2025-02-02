@@ -1,7 +1,9 @@
 package main
 
 import (
+	blockingqueue "concurrency-patterns/blocking-queue"
 	diningphilosophers "concurrency-patterns/dining-philosophers"
+	threadpool "concurrency-patterns/thread-pool"
 	"fmt"
 	"sync"
 )
@@ -28,4 +30,9 @@ func main() {
 	}
 	dineGroup.Wait()
 	fmt.Println("All philosphers have finished dining")
+	threadpool := threadpool.NewThreadPool(4)
+	threadpool.Shutdown()
+	blockingqueue, _ := blockingqueue.NewBlockingQueue(5)
+	blockingqueue.Enqueue(7)
+
 }
