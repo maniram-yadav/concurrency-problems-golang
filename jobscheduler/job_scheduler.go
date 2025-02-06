@@ -15,7 +15,9 @@ type JobScheduler struct {
 }
 
 func NewJobScheduler(workers int) *JobScheduler {
-	js := &JobScheduler{workers: workers, jobs: make(map[string]*Job), results: make(map[string]error)}
+	js := &JobScheduler{workers: workers, jobs: make(map[string]*Job),
+		readyQueue: make(chan string, workers),
+		results:    make(map[string]error)}
 	return js
 }
 
@@ -47,9 +49,12 @@ func (js *JobScheduler) dfs(jobId string, visited map[string]bool) {
 	}
 	js.wg.Add(1)
 	js.readyQueue <- jobId
+
 }
+
 func (js *JobScheduler) AddJob(job *Job) {
 	js.jobs[job.Id] = job
+
 }
 
 func (js *JobScheduler) Run() {
@@ -61,17 +66,16 @@ func (js *JobScheduler) Run() {
 	var visited = make(map[string]bool)
 
 	for jobId := range js.jobs {
-		// if len(js.jobs[jobId].Depends) == 0 {
-		js.dfs(jobId, visited)
-		// }
+		if len(js.jobs[jobId].Depends) == 0 {
+			js.dfs(jobId, visited)
+		}
 	}
-
 	js.wg.Wait()
 	close(js.readyQueue)
 }
 
 func (js *JobScheduler) worker(workerId int) {
-	fmt.Printf("\n=> started Worker with Id %d", workerId)
+
 	for jobId := range js.readyQueue {
 		js.mutex.Lock()
 		job, jobExists := js.jobs[jobId]
@@ -80,12 +84,13 @@ func (js *JobScheduler) worker(workerId int) {
 			continue
 		}
 		err := job.Execute()
-		fmt.Printf("\n=> Worker %s executed Job with Job Id %d", workerId, jobId)
+		fmt.Printf("\n=>Worker %d executed Job with Job Id %s", workerId, jobId)
 		js.mutex.Lock()
 		js.results[jobId] = err
 		js.mutex.Unlock()
 		js.wg.Done()
 	}
+
 }
 
 func (js *JobScheduler) GetExecutionRsults() map[string]error {
