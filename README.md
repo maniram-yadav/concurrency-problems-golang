@@ -1,7 +1,7 @@
 # concurrency-problems-golang
 This repo contains concurrency problems solved using Go langauge. here is the quick reference for the list of problems solved in this repo -
 
-# 1. Thread-safe Bounded Blocking Queue
+# [1. Thread-safe Bounded Blocking Queue](https://github.com/maniram-yadav/concurrency-problems-golang/tree/main/blocking-queue)
 * A queue with a fixed capacity that supports concurrent enqueue and dequeue operations.
 * Features:
   * Blocks enqueue operations when the queue is full.
@@ -12,7 +12,7 @@ This repo contains concurrency problems solved using Go langauge. here is the qu
   * Producer-consumer problems.
 * Implementation:
   * Use channels and synchronization primitives like sync.Mutex and sync.Cond.
-# 2. Multi-threaded Reader-Writer Lock
+# [2. Multi-threaded Reader-Writer Lock](https://github.com/maniram-yadav/concurrency-problems-golang/tree/main/threaded-rwlcok)
 * A lock that allows multiple readers or a single writer at any time.
 * Features:
   * Prioritize writers or readers based on the use case.
@@ -32,7 +32,7 @@ This repo contains concurrency problems solved using Go langauge. here is the qu
   * High-throughput systems.
 * Implementation:
   * Use a combination of worker queues and channels with a monitor goroutine for resizing.
-# 4. Dining Philosophers Problem
+# [4. Dining Philosophers Problem](https://github.com/maniram-yadav/concurrency-problems-golang/blob/main/dining-philosophers)
 * Classical synchronization problem with philosophers competing for forks (resources).
 * Features:
   * Deadlock-free design.
@@ -41,7 +41,7 @@ This repo contains concurrency problems solved using Go langauge. here is the qu
   * Resource allocation in distributed systems.
 * Implementation:
   * Use semaphores or channels for fork availability.
-# 5. Rate Limiter for API Requests
+# [5. Rate Limiter for API Requests](https://github.com/maniram-yadav/concurrency-problems-golang/tree/main/rate-limiter)
 * Limits the number of requests over a time window.
 * Features:
   * Token bucket or leaky bucket algorithms.
@@ -50,7 +50,7 @@ This repo contains concurrency problems solved using Go langauge. here is the qu
   * Preventing abuse of APIs.
 * Implementation:
   * Use time-based counters and channels for efficient limiting.
-# 6. Concurrent File Processor
+# [6. Concurrent File Processor](https://github.com/maniram-yadav/concurrency-problems-golang/blob/main/file-processor)
 * Processes multiple files concurrently while maintaining order or dependencies.
 * Features:
   * Support for different file formats and operations.
@@ -60,7 +60,7 @@ This repo contains concurrency problems solved using Go langauge. here is the qu
   * Data pipeline systems.
 * Implementation:
   * Use worker pools and channels for file tasks.
-# 7. Job Scheduler with Dependency Management
+# [7. Job Scheduler with Dependency Management](https://github.com/maniram-yadav/concurrency-problems-golang/tree/main/jobscheduler)
 * A scheduler that respects dependencies between jobs.
 * Features:
   * DAG-based dependency resolution.
