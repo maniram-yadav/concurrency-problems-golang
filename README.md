@@ -60,25 +60,7 @@ This repo contains concurrency problems solved using Go langauge. here is the qu
   * Data pipeline systems.
 * Implementation:
   * Use worker pools and channels for file tasks.
-7. Thread-safe Publish-Subscribe System
-* A messaging system with multiple publishers and subscribers.
-* Features:
-  * Allow dynamic subscription and unsubscription.
-  * Handle high message throughput.
-* Use Cases:
-  * Event-driven systems.
-* Implementation:
-  * Use channels and goroutines for publishers and subscribers.
-# 8. Concurrent Priority Queue
-* A thread-safe priority queue for handling prioritized tasks.
-* Features:
-  * Supports concurrent enqueues and dequeues.
-  * Guarantees order of priority.
-* Use Cases:
-  * Task schedulers.
-* Implementation:
-  * Use a heap with a lock for thread-safety.
-# 9. Job Scheduler with Dependency Management
+# 7. Job Scheduler with Dependency Management
 * A scheduler that respects dependencies between jobs.
 * Features:
   * DAG-based dependency resolution.
@@ -88,13 +70,3 @@ This repo contains concurrency problems solved using Go langauge. here is the qu
   * Workflow automation.
 * Implementation:
   * Use a DAG structure and worker pools.
-# 10. Thread-safe Object Pool
-* A pool of reusable objects to minimize memory allocation overhead.
-* Features:
-  * Handle dynamic pool size.
-  * Efficient resource reuse.
-* Use Cases:
-  * Database connection pools.
-  * HTTP client pools.
-* Implementation:
-  * Use a sync.Pool and custom logic for dynamic resizing.
