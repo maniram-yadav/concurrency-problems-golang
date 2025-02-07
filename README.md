@@ -22,7 +22,7 @@ This repo contains concurrency problems solved using Go langauge. here is the qu
   * Shared configuration management.
 * Implementation:
   * Use sync.RWMutex and custom logic to add prioritization.
-# 3. Thread Pool with Dynamic Resizing
+# [3. Thread Pool with Dynamic Resizing](https://github.com/maniram-yadav/concurrency-problems-golang/tree/main/thread-pool)
 * A thread pool that can resize dynamically based on the workload.
 * Features:
   * Create worker goroutines on demand.
